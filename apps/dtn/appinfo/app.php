@@ -4,4 +4,5 @@
 $eventDispatcher = \OC::$server->getEventDispatcher();
 $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
     script('dtn', 'dtn');
+    style('dtn', 'dtn');
 });
