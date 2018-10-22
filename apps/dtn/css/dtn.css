@@ -1,0 +1,20 @@
+/* 
+    Created on : Oct 22, 2018, 3:24:52 PM
+    Author     : antoonp
+*/
+.dtn-transfer-settings-dialog p.comment {
+    text-align: right;
+    font-style: italic;
+    font-size: .9em;
+}
+.dtn-transfer-settings-dialog div.settings {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+.dtn-transfer-settings-dialog div.settings div.setting {
+    margin-top: 1em;
+}
+.dtn-transfer-settings-dialog div.settings div.setting input[type="text"] {
+    margin-left: 1em;
+    width: initial;
+}

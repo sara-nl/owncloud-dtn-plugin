@@ -55,13 +55,29 @@ class DTNController extends Controller {
      * @NoAdminRequired
      */
     public function transferFiles() {
+        $message = "Your files will be transfered using the DTN";
+        $result = "success";
         $dataPath = $this->config->getSystemValue('datadirectory');
         $senderUID = $this->userSession->getUser()->getUID();
+        $receiverDNTUID = $this->request->getParam('receiverDTNUID');
+        $files = $this->request->getParam('files');
+        $fileNames = [];
+        /* prepare and sanitize file names */
+        if(is_array($files) && count($files) > 0) {
+            foreach ($files as $_file) {
+                array_push($fileNames, trim($_file, '/'));
+            }
+        } else {
+            $message = "No files selected";
+            $result = "failure";
+        }
         return [
-            "message" => "Your files will be transfered using the DTN",
-            "result" => "success",
+            "message" => $message,
+            "result" => $result,
             "senderFullDataPath" => "$dataPath/$senderUID/files",
-            "UID" => $senderUID
+            "senderOwnCloudUID" => $senderUID,
+            "receiverDTNUID" => $receiverDNTUID,
+            "files" => $fileNames
         ];
     }
 
