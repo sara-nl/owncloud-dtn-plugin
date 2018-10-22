@@ -1,0 +1,75 @@
+{
+    "name": "owncloud/apps/dtn",
+    "description": "A plugin for connecting to the DTN",
+    "license": "",
+    "config": {
+        "vendor-dir": "lib/composer",
+        "optimize-autoloader": true,
+        "classmap-authoritative": false,
+        "platform": {
+            "php": "5.6.33"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "OC\\": "lib/private",
+            "OC\\Core\\": "core/",
+            "OC\\Settings\\": "settings/",
+            "OCP\\": "lib/public"
+        }
+    },
+    "require-dev": {
+        "jakub-onderka/php-parallel-lint": "^1.0.0",
+        "jakub-onderka/php-console-highlighter": "^0.3.2",
+        "phpunit/phpunit": "^5.7",
+        "mikey179/vfsStream": "^1.6",
+        "behat/mink-extension": "^2.2",
+        "behat/mink-goutte-driver": "^1.2",
+        "behat/mink-selenium2-driver": "dev-master",
+        "sensiolabs/behat-page-object-extension": "^2.0",
+        "behat/behat": "^3.0",
+        "jarnaiz/behat-junit-formatter": "^1.3",
+        "rdx/behat-variables": "^1.2",
+        "roave/security-advisories": "dev-master",
+        "owncloud/coding-standard": "^1.0"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/owncloud/core"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "doctrine/dbal": "^2.5",
+        "phpseclib/phpseclib": "^2.0",
+        "rackspace/php-opencloud": "v1.9.2",
+        "jeremeamia/superclosure": "2.1.0",
+        "bantu/ini-get-wrapper": "v1.0.1",
+        "punic/punic": "^3.1",
+        "pear/archive_tar": "1.4.3",
+        "patchwork/utf8": "^1.3",
+        "symfony/console": "^3.1",
+        "symfony/event-dispatcher": "^3.1",
+        "symfony/routing": "^3.1",
+        "symfony/process": "^3.1",
+        "pimple/pimple": "3.0.2",
+        "nikic/php-parser": "1.4.1",
+        "icewind/Streams": "0.5.2",
+        "swiftmailer/swiftmailer": "^5.4",
+        "guzzlehttp/guzzle": "^5.3",
+        "league/flysystem": "^1.0",
+        "pear/pear-core-minimal": "^v1.10",
+        "interfasys/lognormalizer": "^v1.0",
+        "deepdiver1975/TarStreamer": "v0.1.0",
+        "patchwork/jsqueeze": "^2.0",
+        "symfony/polyfill-php70": "^1.0",
+        "lukasreschke/id3parser": "^0.0.3",
+        "sabre/dav": "^3.2",
+        "deepdiver/zipstreamer": "^1.1",
+        "zendframework/zend-inputfilter": "^2.8",
+        "zendframework/zend-servicemanager": "^3.3",
+        "symfony/translation": "^3.4",
+        "owncloud/core": "10.0.10"
+    }
+}
