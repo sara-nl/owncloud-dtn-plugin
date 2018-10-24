@@ -9,12 +9,30 @@
 }
 .dtn-transfer-settings-dialog div.settings {
     margin-top: 2em;
-    margin-bottom: 3em;
+    margin-bottom: 5em;
 }
 .dtn-transfer-settings-dialog div.settings div.setting {
+    position: relative;
     margin-top: 1em;
+}
+.dtn-transfer-settings-dialog div.settings div.setting label {
+    display: inline-block;
+    width: 10em;
 }
 .dtn-transfer-settings-dialog div.settings div.setting input[type="text"] {
     margin-left: 1em;
     width: initial;
+}
+.dtn-transfer-settings-dialog div.settings span.invalid {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 11.5em;
+    margin-top: 2.6em;
+    color: red;
+    font-weight: bold;
+}
+.dtn-transfer-settings-dialog div.settings div.notification {
+    display: inline-block;
+    position: absolute;
 }

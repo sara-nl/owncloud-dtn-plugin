@@ -25,14 +25,12 @@
                                 if (callback !== undefined) {
                                     callback(dialogId);
                                 }
-//                                $('#' + dialogId).ocdialog('close');
                             }
                         },
                         {
                             text: t('core', 'Cancel'),
                             click: function () {
-                                $(dialogId).ocdialog('close');
-                                /* wait for response notification */
+                                $('#' + dialogId).ocdialog('close');
                             },
                             defaultButton: true
                         }];
@@ -91,33 +89,40 @@
                 e.stopPropagation();
                 console.log('Wanna transfer ? ' + OC.currentUser);
                 /* find the files selected */
-                let _files = $('#filestable .selected');
-                let _filePaths = [];
-                _files.each(function (i) {
-                    if ($(this).attr('data-type') === 'file')
-                        _filePaths.push($(this).attr('data-path') + '/' + $(this).attr('data-file'));
+                let _filesSelected = $('#filestable .selected');
+//                let _filePaths = [];
+                let _files = [];
+                _filesSelected.each(function (i) {
+                    if ($(this).attr('data-type') === 'file') {
+                        _files.push({filePath: $(this).attr('data-path'), fileName: $(this).attr('data-file'), fileSize: $(this).attr('data-size')});
+                    }
                 });
-                if (_filePaths.length > 0) {
-                    let _comment = _filePaths.length < _files.length ? "ignoring directory selection" : "";
+                if (_filesSelected.length > 0) {
+                    let _comment = _filesSelected.length < _filesSelected.length ? "ignoring directory selection" : "";
                     OCA.DTN.transferFiles([], 'DTN transfer', _comment,
                             function (dialogId) {
-                                let _transferUrl = OC.generateUrl('/apps/dtn/transferfiles');
-                                let _receiverDTNUID = $('#' + dialogId).find('input#receiverDTNUID').val();
-                                $.ajax({url: _transferUrl, type: 'GET', data: {
-                                        files: _filePaths,
-                                        receiverDTNUID: _receiverDTNUID
-                                    }})
-                                        .done(function (data, textStatus, jqXHR) {
-                                            console.log('success');
-                                            console.log(data);
-//                                        OC.Notification.show(textStatus, {type: 'info'});
-                                        })
-                                        .fail(function (jqXHR, textStatus, errorThrown) {
-                                            console.log('fail');
-                                            console.log(jqXHR);
-//                                        OC.Notification.show(textStatus, {type: 'error'});
-                                        }
-                                        );
+                                if (_validateInput(dialogId)) {
+                                    let _transferUrl = OC.generateUrl('/apps/dtn/transferfiles');
+                                    let _receiverDTNUID = $('#' + dialogId).find('input#receiverDTNUID').val();
+                                    let _receiverType = $('#' + dialogId).find('#receiverType :selected').val();
+                                    let _dialogId = dialogId;
+                                    $.ajax({url: _transferUrl, type: 'GET', data: {
+                                            files: _files,
+                                            receiverDTNUID: _receiverDTNUID,
+                                            receiverType: _receiverType
+                                        }})
+                                            .done(function (data, textStatus, jqXHR) {
+                                                console.log('success');
+                                                console.log(data);
+                                                if (typeof data.message !== 'undefined')
+                                                    $('#' + _dialogId).find('div.notification').html('<p>' + data.message + '</p>')
+                                            })
+                                            .fail(function (jqXHR, textStatus, errorThrown) {
+                                                console.log('fail');
+                                                console.log(jqXHR);
+                                            }
+                                            );
+                                }
                             },
                             true, 'dtn-transfer-settings-dialog');
                 }
@@ -128,6 +133,20 @@
 //                console.log('load');
 ////            });
 //            });
+            function _validateInput(dialogId) {
+                var _validated = true;
+                $('#' + dialogId + ' .invalid').remove();
+                $('#' + dialogId + ' :required').each(function () {
+                    console.log($(this));
+                    if ($(this).val().trim() === '') {
+                        console.log('does not validate');
+                        _validated = false;
+                        let _notification = '<span class="invalid required">this field is required</span>';
+                        $(this).parent().append(_notification);
+                    }
+                });
+                return _validated;
+            }
         });
     }
 })(OC, window, jQuery);
