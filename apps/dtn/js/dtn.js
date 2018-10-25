@@ -109,7 +109,7 @@
                                     $.ajax({url: _transferUrl, type: 'GET', data: {
                                             files: _files,
                                             receiverDTNUID: _receiverDTNUID,
-                                            receiverType: _receiverType
+                                            receiverType: _receiverType,
                                         }})
                                             .done(function (data, textStatus, jqXHR) {
                                                 console.log('success');
