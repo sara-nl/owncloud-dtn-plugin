@@ -54,15 +54,18 @@ class ConfigProviderController extends ApiController {
     }
 
     /**
+     * Returns file base location information of the user that has the specified email set.
+     * E.g.:
+     * http://172.27.242.113/apps/dtn/config/datalocationinfo?receiverId=antoon.prins@surfsara.nl
      * 
-     * @return array()
+     * @return []
      * @NoCSRFRequired
      * @CORS
      */
     public function getDataLocationInfo() {
         if ($this->request->getParam('receiverId') === NULL) {
             return [
-                "message" => "Sender id must be provided"
+                "message" => "Receiver id must be provided"
             ];
         } else {
             $receiverId = $this->request->getParam('receiverId');
