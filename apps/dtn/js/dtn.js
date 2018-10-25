@@ -4,7 +4,7 @@
     if (!window.OCA.DTN) {
 
         let _dtn = {
-            transferFiles: function (files, title, comment, callback, modal, cssClass) {
+            transferFiles: function (title, comment, callback, modal, cssClass) {
                 return $.when(this._transferFilesSettingsTemplate()).then(function ($tmpl) {
                     var dialogName = dialogId + '-' + OCdialogs.dialogsCounter + '-content';
                     var dialogId = dialogName;
@@ -98,8 +98,8 @@
                     }
                 });
                 if (_filesSelected.length > 0) {
-                    let _comment = _filesSelected.length < _filesSelected.length ? "ignoring directory selection" : "";
-                    OCA.DTN.transferFiles([], 'DTN transfer', _comment,
+                    let _comment = _files.length < _filesSelected.length ? "ignoring directory selection" : "";
+                    OCA.DTN.transferFiles('DTN transfer', _comment,
                             function (dialogId) {
                                 if (_validateInput(dialogId)) {
                                     let _transferUrl = OC.generateUrl('/apps/dtn/transferfiles');

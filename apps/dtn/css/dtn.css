@@ -17,17 +17,18 @@
 }
 .dtn-transfer-settings-dialog div.settings div.setting label {
     display: inline-block;
-    width: 10em;
+    width: 8em;
+    text-align: center;
 }
 .dtn-transfer-settings-dialog div.settings div.setting input[type="text"] {
     margin-left: 1em;
-    width: initial;
+    width: 20em;
 }
 .dtn-transfer-settings-dialog div.settings span.invalid {
     position: absolute;
     left: 0;
     top: 0;
-    margin-left: 11.5em;
+    margin-left: 9.5em;
     margin-top: 2.6em;
     color: red;
     font-weight: bold;
