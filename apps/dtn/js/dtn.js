@@ -21,6 +21,7 @@
                     $('body').append($dlg);
                     var buttonlist = [{
                             text: t('dtn', 'Transfer'),
+                            classes: "transfer",
                             click: function () {
                                 if (callback !== undefined) {
                                     callback(dialogId);
@@ -41,7 +42,7 @@
                         buttons: buttonlist
                     });
 
-                    if (cssClass != undefined) {
+                    if (typeof cssClass !== 'undefined') {
                         $('#' + dialogId).addClass(cssClass);
                     }
 
@@ -61,7 +62,7 @@
                 var defer = $.Deferred();
                 if (!this.$transferFilesSettingsTemplate) {
                     var self = this;
-                    $.get(OC.filePath('dtn', 'templates', 'transferFilesSettings.html'), function (tmpl) {
+                    $.get(OC.filePath('dtn', 'templates', 'transferFilesDialog.html'), function (tmpl) {
                         self.$transferFilesSettingsTemplate = $(tmpl);
                         defer.resolve(self.$transferFilesSettingsTemplate);
                     })
@@ -87,7 +88,6 @@
             $('#selectedActionsList a.transfer').click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Wanna transfer ? ' + OC.currentUser);
                 /* find the files selected */
                 let _filesSelected = $('#filestable .selected');
 //                let _filePaths = [];
@@ -101,27 +101,32 @@
                     let _comment = _files.length < _filesSelected.length ? "ignoring directory selection" : "";
                     OCA.DTN.transferFiles('DTN transfer', _comment,
                             function (dialogId) {
-                                if (_validateInput(dialogId)) {
-                                    let _transferUrl = OC.generateUrl('/apps/dtn/transferfiles');
-                                    let _receiverDTNUID = $('#' + dialogId).find('input#receiverDTNUID').val();
-                                    let _receiverType = $('#' + dialogId).find('#receiverType :selected').val();
-                                    let _dialogId = dialogId;
-                                    $.ajax({url: _transferUrl, type: 'GET', data: {
-                                            files: _files,
-                                            receiverDTNUID: _receiverDTNUID,
-                                            receiverType: _receiverType,
-                                        }})
-                                            .done(function (data, textStatus, jqXHR) {
-                                                console.log('success');
-                                                console.log(data);
-                                                if (typeof data.message !== 'undefined')
-                                                    $('#' + _dialogId).find('div.notification').html('<p>' + data.message + '</p>')
-                                            })
-                                            .fail(function (jqXHR, textStatus, errorThrown) {
-                                                console.log('fail');
-                                                console.log(jqXHR);
-                                            }
-                                            );
+                                if (_files.length === 0) {
+                                    $('#' + dialogId).find('div.notification').html('<p>No files selected, please select the files you want to transfer.</p>');
+                                } else {
+                                    if (_validateInput(dialogId)) {
+                                        let _transferUrl = OC.generateUrl('/apps/dtn/transferfiles');
+                                        let _receiverDTNUID = $('#' + dialogId).find('input#receiverDTNUID').val();
+                                        let _receiverType = $('#' + dialogId).find('#receiverType :selected').val();
+                                        let _dialogId = dialogId;
+                                        $.ajax({url: _transferUrl, type: 'GET', data: {
+                                                files: _files,
+                                                receiverDTNUID: _receiverDTNUID,
+                                                receiverType: _receiverType,
+                                            }})
+                                                .done(function (data, textStatus, jqXHR) {
+                                                    console.log('success');
+                                                    console.log(data);
+                                                    if (typeof data.message !== 'undefined')
+                                                        $('#' + _dialogId).find('div.notification').html('<p>' + data.message + '</p>')
+                                                    $('#' + _dialogId).parent('.oc-dialog').find('button.transfer').attr("disabled", "disabled");
+                                                })
+                                                .fail(function (jqXHR, textStatus, errorThrown) {
+                                                    console.log('fail');
+                                                    console.log(jqXHR);
+                                                }
+                                                );
+                                    }
                                 }
                             },
                             true, 'dtn-transfer-settings-dialog');
@@ -137,11 +142,12 @@
                 var _validated = true;
                 $('#' + dialogId + ' .invalid').remove();
                 $('#' + dialogId + ' :required').each(function () {
-                    console.log($(this));
+//                    console.log($(this));
                     if ($(this).val().trim() === '') {
                         console.log('does not validate');
                         _validated = false;
-                        let _notification = '<span class="invalid required">this field is required</span>';
+                        let _attributeTitle = typeof $(this).attr('data-attribute-title') !== 'undefined' ? $(this).attr('data-attribute-title') : "this field";
+                        let _notification = '<span class="invalid required">' + _attributeTitle + ' is required</span>';
                         $(this).parent().append(_notification);
                     }
                 });
