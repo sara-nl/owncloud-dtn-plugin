@@ -94,8 +94,7 @@ class ConfigProviderController extends ApiController {
      */
     private function findUser(string $emailAddress) {
         $_user = NULL;
-        $_this = $this;
-        $this->userManager->callForAllUsers(function ($user) use (&$_user, $emailAddress, $_this) {
+        $this->userManager->callForAllUsers(function ($user) use (&$_user, $emailAddress) {
             if ($user->getEMailAddress() === $emailAddress) {
                 $_user = $user;
             }
