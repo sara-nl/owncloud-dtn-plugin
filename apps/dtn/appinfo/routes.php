@@ -11,8 +11,7 @@ namespace OCA\DTN\AppInfo;
  */
 $application = new Application();
 $application->registerRoutes(
-        $this, [
-    'routes' => [
+        $this, ['routes' => [
         [
             'name' => 'dtn#transferFiles',
             'url' => '/transferfiles',
@@ -26,7 +25,12 @@ $application->registerRoutes(
         [
             'name' => 'config_provider#getDataLocationInfo',
             'url' => '/config/datalocationinfo',
-            'verb' => 'GET',
+            'verb' => 'GET'
+        ],
+        [
+            'name' => 'notification#addNotification',
+            'url' => '/notifier/notification',
+            'verb' => 'POST'
         ]
     ]
         ]
