@@ -62,7 +62,7 @@ class DTNController extends Controller {
                 array_push($fileNames, trim($_file, '/'));
             }
             /* Now call the DTN agent */
-            $_transferResponse = $this->dtnAgentExternalNotification($_dtnAgentMessage["message"]);
+            $_transferResponse = $this->dtnAgentInternalNotification($_dtnAgentMessage["message"]);
             $message = "Your files will be transfered using the DTN";
 
             if (isset($_transferResponse['error']))
@@ -132,7 +132,7 @@ class DTNController extends Controller {
      * Performs the actual call to the DTN agent.
      * @param array $files
      */
-    private function dtnAgentExternalNotification($message = []) {
+    private function dtnAgentInternalNotification($message = []) {
         $_result = [];
         try {
             $_url = 'https://172.27.242.113:3001/internal_notification';
