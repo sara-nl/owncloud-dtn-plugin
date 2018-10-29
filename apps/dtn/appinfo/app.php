@@ -6,3 +6,17 @@ $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
     script('dtn', 'dtn');
     style('dtn', 'dtn');
 });
+
+$notificationManager = \OC::$server->getNotificationManager();
+$notificationManager->registerNotifier(function () {
+	return new OCA\DTN\controller\Notifier(
+		\OC::$server->getL10NFactory(),
+                \OC::$server->getLogger()
+	);
+}, function () {
+	$l = \OC::$server->getL10N('dtn');
+	return [
+		'id' => 'dtn',
+		'name' => $l->t('DTN'),
+	];
+});
