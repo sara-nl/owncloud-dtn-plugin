@@ -7,16 +7,17 @@ $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
     style('dtn', 'dtn');
 });
 
+/* Register the DTN notifier with the notification manager */
 $notificationManager = \OC::$server->getNotificationManager();
 $notificationManager->registerNotifier(function () {
-	return new OCA\DTN\controller\Notifier(
-		\OC::$server->getL10NFactory(),
-                \OC::$server->getLogger()
-	);
+    return new OCA\DTN\Notifier(
+            \OC::$server->getL10NFactory(), \OC::$server->getLogger()
+    );
 }, function () {
-	$l = \OC::$server->getL10N('dtn');
-	return [
-		'id' => 'dtn',
-		'name' => $l->t('DTN'),
-	];
+    $l = \OC::$server->getL10N('dtn');
+    return [
+        'id' => 'dtn',
+        'name' => $l->t('DTN'),
+    ];
 });
+
