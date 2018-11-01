@@ -37,3 +37,25 @@
     display: inline-block;
     position: absolute;
 }
+.dtn-settings .setting label {
+    display: inline-block;
+    width: 18em;
+}
+.dtn-settings .setting input[type="text"] {
+    margin-left: 1em;
+    width: 20em;
+}
+.dtn-settings .setting div.notification {
+    display: inline-block;
+}
+.dtn-settings .setting div.notification span {
+    position: absolute;
+}
+.dtn-settings .setting div.notification.ok span {
+    -webkit-transition: opacity 3s ease-out;
+    -moz-transition: opacity 3s ease-out;
+    -ms-transition: opacity 3s ease-out;
+    -o-transition: opacity 3s ease-out;
+    transition: opacity 3s ease-out;
+    opacity: 0;
+}
