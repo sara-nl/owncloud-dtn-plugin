@@ -14,6 +14,8 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\IConfig;
 use OCP\ILogger;
+use OCP\IUser;
+use OCA\DTN\Util;
 
 /**
  * Description of NotificationController
@@ -48,22 +50,20 @@ class NotificationController extends ApiController {
      * @NoCSRFRequired
      * @CORS
      * 
-     * @param type $userEMail
-     * @param type $senderID
+     * @param type $receiverDTNUID
+     * @param type $senderDTNUID
      * @param type $files
      * @param type $message
      * @return type
      */
-    public function addNotification($userEMail, $senderID, $files = [], $message = NULL) {
+    public function addNotification($receiverDTNUID, $senderDTNUID, $message = NULL) {
         try {
-            if (!isset($userEMail) || !isset($senderID)) {
+            if (!isset($receiverDTNUID) || !isset($senderDTNUID)) {
                 return [
-                    "error" => "Both user ownCloud eMail address and sender id must be specified."
+                    "error" => "Both user DTN receiver id and sender id must be specified."
                 ];
             } else {
-                /* set message */
-
-                $_user = $this->findUser($userEMail);
+                $_user = Util::findUserForDTNUserId($receiverDTNUID);
 
                 if (isset($_user)) {
                     $notificationManager = \OC::$server->getNotificationManager();
@@ -72,15 +72,15 @@ class NotificationController extends ApiController {
                             ->setUser($_user->getUID())
                             ->setDateTime(new \DateTime())
                             ->setObject('dtn', 'new_file_transfer')
-                            ->setSubject('dtn', [$senderID])
-                            ->setMessage('dtn', isset($message) ? [0 => $message] : $files);
+                            ->setSubject('dtn', [$senderDTNUID])
+                            ->setMessage('dtn', isset($message) ? [0 => $message] : [0 => ""]);
                     $notificationManager->notify($notification);
                     return [
                         "message" => "Notification has landed."
                     ];
                 } else {
                     return [
-                        "error" => "Unable to retrieve user with UID '$userEMail'"
+                        "error" => "Unable to retrieve user with user id '$receiverDTNUID'"
                     ];
                 }
             }
@@ -91,26 +91,6 @@ class NotificationController extends ApiController {
                 "error" => "An exception has occurred when adding a notification."
             ];
         }
-    }
-
-    /**
-     * Finds and returns the user with the specified email address. Returns NULL if the user is not found.
-     * @param string $emailAddress
-     * @return \OCP\IUser
-     */
-    private function findUser(string $emailAddress) {
-        $_user = NULL;
-        try {
-            $this->userManager->callForAllUsers(function ($user) use (&$_user, $emailAddress) {
-                if ($user->getEMailAddress() === $emailAddress) {
-                    $_user = $user;
-                }
-            });
-        } catch (Exception $ex) {
-            $this->logger->log(\OCP\Util::ERROR, "An exception has occurred when trying to lookup user with UID '$emailAddress'.");
-            $this->logger->logException($ex);
-        }
-        return $_user;
     }
 
 }
