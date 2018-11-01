@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace OCA\DTN\controller;
+namespace OCA\DTN;
 
 use OCP\Notification\INotifier;
 use OCP\Notification\INotification;
@@ -46,7 +46,7 @@ class Notifier implements INotifier {
                 $params = $notification->getSubjectParameters();
                 if (isset($params[0])) {
                     $notification->setParsedSubject(
-                            (string) $l->t('One or more files have been send to you by "%1$s"', $params)
+                            (string) $l->t('A message has been send to you by "%1$s"', $params)
                     );
 //                } else {
 //                    $notification->setParsedSubject(
