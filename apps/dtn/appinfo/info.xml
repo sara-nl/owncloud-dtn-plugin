@@ -18,6 +18,6 @@
         <user>https://github.com/sara-nl/owncloud-dtn-plugin</user>
     </documentation>
     <settings>
-        <personal>OCA\DTN\panels\Personal</personal>
+        <personal>OCA\DTN\Panels\Personal</personal>
     </settings>
 </info>

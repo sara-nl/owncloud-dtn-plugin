@@ -3,14 +3,14 @@
 /**
  * SURFsara
  */
-namespace OCA\DTN\controller;
+namespace OCA\DTN\Controller;
 use Test\TestCase;
 use OCP\IUser;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\IConfig;
-use OCA\DTN\controller\ConfigProviderController;
+use OCA\DTN\Controller\ConfigProviderController;
 
 /**
  * Description of ConfigProviderControllerTest

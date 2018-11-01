@@ -7,8 +7,8 @@
 namespace OCA\DTN\AppInfo;
 
 use OCP\AppFramework\App;
-use OCA\DTN\controller\DtnController;
-use OCA\DTN\controller\ConfigProviderController;
+use OCA\DTN\Controller\DtnController;
+use OCA\DTN\Controller\ConfigProviderController;
 use OCP\IContainer;
 
 /**

@@ -4,7 +4,7 @@
  * SURFsara
  */
 
-namespace OCA\DTN\controller;
+namespace OCA\DTN\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\IRequest;

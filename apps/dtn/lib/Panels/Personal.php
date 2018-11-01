@@ -4,7 +4,7 @@
  * SURFsara
  */
 
-namespace OCA\DTN\panels;
+namespace OCA\DTN\Panels;
 
 use OCP\IConfig;
 use OCP\IUserSession;
