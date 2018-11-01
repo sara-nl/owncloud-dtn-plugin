@@ -18,11 +18,6 @@ $application->registerRoutes(
             'verb' => 'GET'
         ],
         [
-            'name' => 'dtn#index',
-            'url' => '/',
-            'verb' => 'GET'
-        ],
-        [
             'name' => 'config_provider#getDataLocationInfo',
             'url' => '/config/datalocationinfo/{receiverDTNUID}',
             'verb' => 'GET'
