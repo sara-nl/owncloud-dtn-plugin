@@ -117,8 +117,9 @@
                                                 .done(function (data, textStatus, jqXHR) {
                                                     console.log('success');
                                                     console.log(data);
-                                                    if (typeof data.message !== 'undefined')
-                                                        $('#' + _dialogId).find('div.notification').html('<p>' + data.message + '</p>')
+                                                    if (typeof data.message !== 'undefined') {
+                                                        $('#' + _dialogId).find('div.notification').html('<p>' + data.message + '</p>');
+                                                    }
                                                     $('#' + _dialogId).parent('.oc-dialog').find('button.transfer').attr("disabled", "disabled");
                                                 })
                                                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -144,7 +145,7 @@
                 $('#' + dialogId + ' :required').each(function () {
 //                    console.log($(this));
                     if ($(this).val().trim() === '') {
-                        console.log('does not validate');
+//                        console.log('does not validate');
                         _validated = false;
                         let _attributeTitle = typeof $(this).attr('data-attribute-title') !== 'undefined' ? $(this).attr('data-attribute-title') : "this field";
                         let _notification = '<span class="invalid required">' + _attributeTitle + ' is required</span>';
