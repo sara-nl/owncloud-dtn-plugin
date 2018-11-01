@@ -24,12 +24,17 @@ $application->registerRoutes(
         ],
         [
             'name' => 'config_provider#getDataLocationInfo',
-            'url' => '/config/datalocationinfo',
+            'url' => '/config/datalocationinfo/{receiverDTNUID}',
             'verb' => 'GET'
         ],
         [
             'name' => 'notification#addNotification',
             'url' => '/notifier/notification',
+            'verb' => 'POST'
+        ],
+        [
+            'name' => 'dtn_settings#setUserSetting',
+            'url' => '/dtnsettings/user/{key}',
             'verb' => 'POST'
         ]
     ]
