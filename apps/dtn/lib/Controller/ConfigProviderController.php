@@ -12,6 +12,7 @@ use OCP\IUserSession;
 use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\ILogger;
+use OCA\DTN\Util;
 
 /**
  * Description of ConfigProviderController
@@ -62,53 +63,29 @@ class ConfigProviderController extends ApiController {
      * @NoCSRFRequired
      * @CORS
      */
-    public function getDataLocationInfo() {
-        if ($this->request->getParam('receiverId') === NULL) {
+    public function getDataLocationInfo($receiverDTNUID) {
+        $this->logger->log('info', $receiverDTNUID);
+        if ($receiverDTNUID === NULL) {
             return [
                 "message" => "Receiver id must be provided"
             ];
         } else {
-            $receiverId = $this->request->getParam('receiverId');
             $dataPath = $this->config->getSystemValue('datadirectory');
-            $_receiver = $this->findUser($receiverId);
+            $_receiver = Util::findUserForDTNUserId($receiverDTNUID);
             if (isset($_receiver)) {
                 $_receiverUID = $_receiver->getUID();
                 return [
                     "message" => "dataLocationInfo called",
                     "dataPath" => $dataPath,
-                    "receiverId" => $_receiver->getUID(),
+                    "receiverOwnCloudUID" => $_receiver->getUID(),
                     "receiverFullDataPath" => "$dataPath/$_receiverUID/files"
                 ];
             } else {
                 return [
-                    "message" => "The receiver could not be determined for receiverId: $receiverId"
+                    "message" => "The receiver could not be determined for receiverId: $receiverDTNUID"
                 ];
             }
         }
-    }
-
-    /**
-     * Finds and returns the user with the specified email address. Returns NULL if the user is not found.
-     * @param string $emailAddress
-     * @return type
-     */
-    private function findUser(string $emailAddress) {
-        $_user = NULL;
-        $this->userManager->callForAllUsers(function ($user) use (&$_user, $emailAddress) {
-            if ($user->getEMailAddress() === $emailAddress) {
-                $_user = $user;
-            }
-        });
-        return $_user;
-    }
-
-    /**
-     * Logs the specified message at the specified level.
-     * @param type $message
-     * @param type $level
-     */
-    private function log($message, string $level = NULL) {
-        $this->logger->log($level, $message);
     }
 
 }
