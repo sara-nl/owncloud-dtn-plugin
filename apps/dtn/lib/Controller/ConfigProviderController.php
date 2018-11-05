@@ -73,9 +73,8 @@ class ConfigProviderController extends ApiController {
             if (isset($_receiver)) {
                 $_receiverUID = $_receiver->getUID();
                 return [
-                    "dataPath" => $dataPath,
                     "receiverOwnCloudUID" => $_receiver->getUID(),
-                    "receiverFullDataPath" => "$dataPath/$_receiverUID/files"
+                    "userDataPath" => "$_receiverUID/files"
                 ];
             } else {
                 return [
