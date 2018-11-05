@@ -31,6 +31,11 @@ $application->registerRoutes(
             'name' => 'dtn_settings#setUserSetting',
             'url' => '/dtnsettings/user/{key}',
             'verb' => 'POST'
+        ],
+        [
+            'name' => 'dtn_settings#setAdminSetting',
+            'url' => '/dtnsettings/admin/{key}',
+            'verb' => 'POST'
         ]
     ]
         ]

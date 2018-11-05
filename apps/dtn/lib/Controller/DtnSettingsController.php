@@ -55,4 +55,15 @@ class DtnSettingsController extends Controller {
             $this->config->setUserValue($this->userSession->getUser()->getUID(), 'dtn', $key, $value);
         }
     }
+    
+    /**
+     * @param type $key
+     * @param type $value
+     */
+    public function setAdminSetting($key, $value) {
+        $this->logger->log('info', "setting pair $key : $value");
+        if(isset($key) && isset($value)) {
+            $this->config->setAppValue('dtn', $key, $value);
+        }
+    }
 }

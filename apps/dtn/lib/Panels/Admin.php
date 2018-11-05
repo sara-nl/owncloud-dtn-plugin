@@ -12,11 +12,11 @@ use OCP\Settings\ISettings;
 use OCP\Template;
 
 /**
- * Description of Personal
+ * Description of Admin
  *
  * @author antoonp
  */
-class Personal implements ISettings {
+class Admin implements ISettings {
 
     /** @var IConfig */
     protected $config;
@@ -28,8 +28,8 @@ class Personal implements ISettings {
     }
 
     public function getPanel() {
-        $tmpl = new Template('dtn', 'personalSettings');
-        $tmpl->assign('dtnUID', $this->config->getUserValue($this->userSession->getUser()->getUID(), 'dtn', 'dtnUID'));
+        $tmpl = new Template('dtn', 'adminSettings');
+        $tmpl->assign('dtnAgentIP', $this->config->getAppValue('dtn', 'dtnAgentIP'));
         return $tmpl;
     }
 

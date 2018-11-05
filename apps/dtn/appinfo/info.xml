@@ -19,5 +19,6 @@
     </documentation>
     <settings>
         <personal>OCA\DTN\Panels\Personal</personal>
+        <admin>OCA\DTN\Panels\Admin</admin>
     </settings>
 </info>
