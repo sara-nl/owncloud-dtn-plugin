@@ -83,8 +83,8 @@ class DtnController extends Controller {
             foreach ($files as $_file) {
                 if (isset($_file["filePath"]) && isset($_file["fileName"]) && isset($_file["fileSize"])) {
                     array_push($_message["files"], [
-                        "type" => "name",
-                        "name" => "$dataPath/$senderUID/files" . trim($_file["filePath"], '/'),
+                        "type" => "path",
+                        "path" => trim($_file["filePath"] . $_file["fileName"], '/'),
                         "metadata" => [
                             "name" => $_file["fileName"],
                             "size" => intval($_file["fileSize"])
