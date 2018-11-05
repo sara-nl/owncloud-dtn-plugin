@@ -55,9 +55,7 @@ class ConfigProviderController extends ApiController {
     }
 
     /**
-     * Returns file base location information of the user that has the specified email set.
-     * E.g.:
-     * http://172.27.242.113/apps/dtn/config/datalocationinfo?receiverId=antoon.prins@surfsara.nl
+     * Returns file base location information of the user with the specified DTN user id.
      * 
      * @return []
      * @NoCSRFRequired
@@ -75,7 +73,6 @@ class ConfigProviderController extends ApiController {
             if (isset($_receiver)) {
                 $_receiverUID = $_receiver->getUID();
                 return [
-                    "message" => "dataLocationInfo called",
                     "dataPath" => $dataPath,
                     "receiverOwnCloudUID" => $_receiver->getUID(),
                     "receiverFullDataPath" => "$dataPath/$_receiverUID/files"
