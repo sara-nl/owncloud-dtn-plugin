@@ -112,7 +112,7 @@ class DtnController extends Controller {
     private function dtnAgentInternalNotification($message = []) {
         $_result = [];
         try {
-            $_dtnAgentIp = $this->config->getUserValue($this->userSession->getUser()->getUID(), 'dtn', 'dtnAgentIP');
+            $_dtnAgentIp = $this->config->getAppValue('dtn', 'dtnAgentIP');
             if (!isset($_dtnAgentIp) || trim($_dtnAgentIp) === '') {
                 throw new \Exception('DTN agent server ip not found. Has this been set ?');
             }
