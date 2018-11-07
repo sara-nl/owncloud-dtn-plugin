@@ -41,11 +41,12 @@ class Application extends App {
             );
         });
 
-//        $server->getConfig()->deleteAppValue('dtn', 'dtnUID');
-//        $server->getConfig()->setUserValue('admin', 'dtn', 'dtnUID', 'admin@dtn-agent.com');
-//        $server->getConfig()->setUserValue('antoon', 'dtn', 'dtnUID', 'antoonp@dtn-agent.com');
-//        $server->getConfig()->setUserValue('antoon', 'dtn', 'dtnID', 'antoon@dtn.nl');
-//        $server->getConfig()->setUserValue('pietje', 'dtn', 'dtnID', 'pietje@dtn.nl');
+        /**
+         * @todo Remove this setting This setting inactivates the code integrity check !! 
+         * It must be removed when the app goes into production */
+        $server->getConfig()->setSystemValue('integrity.check.disabled', true);
+        /* Reset the system setting to false again */
+//        $server->getConfig()->setSystemValue('integrity.check.disabled', false);
     }
 
 }
