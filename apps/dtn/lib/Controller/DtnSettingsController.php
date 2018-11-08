@@ -50,9 +50,8 @@ class DtnSettingsController extends Controller {
      * @param type $value
      */
     public function setUserSetting($key, $value) {
-        $this->logger->log('info', "setting pair $key : $value");
         if(isset($key) && isset($value)) {
-            $this->config->setUserValue($this->userSession->getUser()->getUID(), 'dtn', $key, $value);
+            $this->config->setUserValue($this->userSession->getUser()->getUID(), 'dtn', $key, trim($value));
         }
     }
     
@@ -61,9 +60,8 @@ class DtnSettingsController extends Controller {
      * @param type $value
      */
     public function setAdminSetting($key, $value) {
-        $this->logger->log('info', "setting pair $key : $value");
         if(isset($key) && isset($value)) {
-            $this->config->setAppValue('dtn', $key, $value);
+            $this->config->setAppValue('dtn', $key, trim($value));
         }
     }
 }
