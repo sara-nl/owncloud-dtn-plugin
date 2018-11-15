@@ -4,10 +4,10 @@ This application adds large file transfer capabilities to your ownCloud instance
 <br>
 <br>
 
-### <span style="">[Getting started](#getting-started)</span><span style="margin-left: 20%;">[Development](#development)</span>
-##### <span style="margin-left: 6%;">[Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)</span><span style="margin-left: 12%;">[ConfigProvider service](#configprovider) | [Notification service](#notification)</span>
+### [Getting started](#getting-started)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Development](#development)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConfigProvider service](#configprovider) | [Notification service](#notification)
 <br>
-
+<hr>
 ## <span id="getting-started">Getting Started</span>
 
 ### <span id="installing">Installing</span>
