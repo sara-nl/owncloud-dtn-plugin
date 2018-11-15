@@ -45,7 +45,7 @@ This service provides user data path information, ie. the path where files of a 
 This endpoint requires authentication by an ownCloud user with admin rights.
 
 Call example:
->curl -u admin:admin -b cookies.txt -c cookies.txt -H "Accept: application/json" https://127.0.0.1/owncloud/index.php/apps/dtn/config/datalocationinfo/user01@dtn.example.com
+>curl -u admin:passw -b cookies.txt -c cookies.txt -H "Accept: application/json" https://127.0.0.1/owncloud/index.php/apps/dtn/config/datalocationinfo/user01@dtn.example.com
 
 The response is in JSON, eg: 
 >{  
@@ -68,4 +68,4 @@ The post requires json notification data. Eg.:
 This endpoint requires authentication by an ownCloud user with admin rights.
 
 Call example:
->curl -u admin:admin -b cookies.txt -c cookies.txt -H "Accept: application/json" -H "Content-type: application/json" -X POST -d {\"receiverDTNUID\":\"user01@dtn-agent.com\",\"senderDTNUID\":\"sender01@dtn-agent.com\",\"message\":\"A_notification_message\"} https://127.0.0.1/owncloud/index.php/apps/dtn/notifier/notification
+>curl -u admin:passw -b cookies.txt -c cookies.txt -H "Accept: application/json" -H "Content-type: application/json" -X POST -d {\"receiverDTNUID\":\"user01@dtn-agent.com\",\"senderDTNUID\":\"sender01@dtn-agent.com\",\"message\":\"A_notification_message\"} https://127.0.0.1/owncloud/index.php/apps/dtn/notifier/notification
