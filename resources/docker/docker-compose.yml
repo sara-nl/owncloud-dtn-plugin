@@ -39,10 +39,8 @@ services:
       retries: 5
     volumes:
       - files:/mnt/data
-
       # dev plugin code
       - c:/xampp/htdocs/ownCloud-DTN-plugin/apps/dtn:/var/www/owncloud/apps/dtn
-      
       # tests requirements
       - c:/xampp/htdocs/ownCloud-DTN-plugin/tests:/var/www/owncloud/tests
       
