@@ -50,8 +50,8 @@ class ConfigProviderControllerTest extends TestCase {
         $this->request = $this->getMockBuilder('\OCP\IRequest')
                 ->disableOriginalConstructor()
                 ->getMock();
-        $this->user = $this->createMock('\OCP\IUser');
         /* Setup user */
+        $this->user = $this->createMock('\OCP\IUser');
         $this->user->expects($this->any())
                 ->method('getUID')
                 ->will($this->returnValue('admin'));
@@ -76,14 +76,9 @@ class ConfigProviderControllerTest extends TestCase {
     }
 
     public function testGetDataLocationInfo() {
-        \printf(' appName: ' . $this->user->getUID());
         /* no id provided must return message key */
-        $_result = $this->configProviderController->getDataLocationInfo();
+        $_result = $this->configProviderController->getDataLocationInfo('admin');
         $this->assertArrayHasKey('message', $_result);
-        
-        
-
-        \printf($_result['message']);
     }
 
 }
