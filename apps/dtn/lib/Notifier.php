@@ -1,9 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @copyright (c) 2018, SURFsara
  */
 
 namespace OCA\DTN;
@@ -21,16 +19,11 @@ class Notifier implements INotifier {
     /** @var \OCP\L10N\IFactory */
     protected $factory;
 
-    /** @var \OCP\ILogger */
-    protected $logger;
-
-    function __construct(\OCP\L10N\IFactory $factory, \OCP\ILogger $logger) {
+    function __construct(\OCP\L10N\IFactory $factory) {
         $this->factory = $factory;
-        $this->logger = $logger;
     }
 
     public function prepare(INotification $notification, $languageCode) {
-        $this->logger->log(\OCP\Util::INFO, 'prepare method called');
 
         if ($notification->getApp() !== 'dtn') {
             // Not my app => throw
@@ -48,10 +41,6 @@ class Notifier implements INotifier {
                     $notification->setParsedSubject(
                             (string) $l->t('A message has been send to you by "%1$s"', $params)
                     );
-//                } else {
-//                    $notification->setParsedSubject(
-//                            (string) $l->t('"%1$s" shared "%3$s" with you', $params)
-//                    );
                 }
 
                 $messageParams = $notification->getMessageParameters();
@@ -72,26 +61,6 @@ class Notifier implements INotifier {
                             (string) $l->t('No further details', $messageParams)
                     );
                 }
-
-                // Deal with the actions for a known subject
-//                foreach ($notification->getActions() as $action) {
-//                    switch ($action->getLabel()) {
-//                        case 'accept':
-//                            $action->setParsedLabel(
-//                                            (string) $l->t('Accept')
-//                                    )
-//                                    ->setPrimary(true);
-//                            break;
-//
-//                        case 'decline':
-//                            $action->setParsedLabel(
-//                                    (string) $l->t('Decline')
-//                            );
-//                            break;
-//                    }
-//
-//                    $notification->addParsedAction($action);
-//                }
                 return $notification;
 
             default:

@@ -18,12 +18,11 @@ class Util {
      * @param string $dtnUID
      * @return \OCP\IUser
      */
-    public static function findUserForDTNUserId(string $dtnUID) {
+    public static function findUserForDTNUserId(string $dtnUID = 'someUserId') {
         $_user = NULL;
         try {
             if (isset($dtnUID) && trim($dtnUID) !== '') {
                 $_users = \OC::$server->getConfig()->getUsersForUserValue('dtn', 'dtnUID', $dtnUID);
-//                $_users = $this->config->getUsersForUserValue('dtn', 'dtnUID', $dtnUID);
                 if (count($_users) == 1) {
                     $_user = \OC::$server->getUserManager()->get($_users[0]);
 //                    $_user = $this->userManager->get($_users[0]);
@@ -37,5 +36,5 @@ class Util {
         }
         return $_user;
     }
-
+    
 }

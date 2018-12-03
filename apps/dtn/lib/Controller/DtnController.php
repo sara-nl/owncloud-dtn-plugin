@@ -39,7 +39,7 @@ class DtnController extends Controller {
      * @NoAdminRequired
      */
     public function transferFiles() {
-        $_dtnAgentMessage = $this->createInternalNotificationMessage($this->request);
+        $_dtnAgentMessage = $this->createInternalNotificationMessage();
         if (!isset($_dtnAgentMessage["error"]) && isset($_dtnAgentMessage["message"])) {
             /* Now call the DTN agent */
             $_transferResponse = $this->dtnAgentInternalNotification($_dtnAgentMessage["message"]);
@@ -67,7 +67,7 @@ class DtnController extends Controller {
      * 
      * @param IRequest $request
      */
-    private function createInternalNotificationMessage($request) {
+    private function createInternalNotificationMessage() {
         $_result = [];
         $files = $this->request->getParam('files');
         if (is_array($files) && count($files) > 0) {
