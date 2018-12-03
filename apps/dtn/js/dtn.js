@@ -90,7 +90,6 @@
                 e.stopPropagation();
                 /* find the files selected */
                 let _filesSelected = $('#filestable .selected');
-//                let _filePaths = [];
                 let _files = [];
                 _filesSelected.each(function (i) {
                     if ($(this).attr('data-type') === 'file') {
@@ -133,19 +132,11 @@
                             true, 'dtn-transfer-settings-dialog');
                 }
             });
-            /* File select handler to check file type selecttions for transfer button; we can not (yet) handle directories */
-//            $('#filestable').load(function() {
-////            $('input[type="checkbox"]').change(function() {
-//                console.log('load');
-////            });
-//            });
             function _validateInput(dialogId) {
                 var _validated = true;
                 $('#' + dialogId + ' .invalid').remove();
                 $('#' + dialogId + ' :required').each(function () {
-//                    console.log($(this));
                     if ($(this).val().trim() === '') {
-//                        console.log('does not validate');
                         _validated = false;
                         let _attributeTitle = typeof $(this).attr('data-attribute-title') !== 'undefined' ? $(this).attr('data-attribute-title') : "this field";
                         let _notification = '<span class="invalid required">' + _attributeTitle + ' is required</span>';
