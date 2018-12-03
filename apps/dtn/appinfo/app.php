@@ -11,7 +11,7 @@ $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
 $notificationManager = \OC::$server->getNotificationManager();
 $notificationManager->registerNotifier(function () {
     return new OCA\DTN\Notifier(
-            \OC::$server->getL10NFactory(), \OC::$server->getLogger()
+            \OC::$server->getL10NFactory()
     );
 }, function () {
     $l = \OC::$server->getL10N('dtn');
