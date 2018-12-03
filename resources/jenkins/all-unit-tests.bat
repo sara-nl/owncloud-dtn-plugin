@@ -1,0 +1,1 @@
+cd c:\xampp\htdocs\ownCloud-DTN-plugin-docker & docker exec owncloud-dtn-plugin /bin/bash -c "cd /var/www/owncloud/apps/dtn/tests/unit && php phpunit --colors --debug --bootstrap bootstrap.php --filter 'OCA\\DTN\\Tests' ./"
