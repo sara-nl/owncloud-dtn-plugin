@@ -41,15 +41,24 @@ services:
     volumes:
       - files:/mnt/data
 
+      #------------------
       # dev plugin code
-      - c:/xampp/htdocs/ownCloud-DTN-plugin/apps/dtn:/var/www/owncloud/apps/dtn
+      #------------------
+      # local
+#      - c:/xampp/htdocs/ownCloud-DTN-plugin/apps/dtn:/var/www/owncloud/apps/dtn
+      # Jenkins workspace
+      - C:/Program Files (x86)/Jenkins/workspace/test-01/apps/dtn:/var/www/owncloud/apps/dtn
       
       # tests requirements
-      - c:/xampp/htdocs/ownCloud-DTN-plugin/tests:/var/www/owncloud/tests
+      # local
+#      - c:/xampp/htdocs/ownCloud-DTN-plugin/tests:/var/www/owncloud/tests
+      # Jenkins workspace
+      - C:/Program Files (x86)/Jenkins/workspace/test-01/tests:/var/www/owncloud/tests
       
   db:
     image: webhippie/mariadb:latest
     restart: always
+    container_name: owncloud-dtn-plugin-unit-tests-runner-db
     environment:
       - MARIADB_ROOT_PASSWORD=owncloud
       - MARIADB_USERNAME=owncloud
@@ -71,6 +80,7 @@ services:
   redis:
     image: webhippie/redis:latest
     restart: always
+    container_name: owncloud-dtn-plugin-unit-tests-runner-redis
     environment:
       - REDIS_DATABASES=1
     healthcheck:

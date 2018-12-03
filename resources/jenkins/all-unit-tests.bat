@@ -9,6 +9,9 @@ IF /I "%ERRORLEVEL%" NEQ "0" (
     SET /A errno=%ERRORLEVEL%
 )
 docker-compose stop
+docker rm owncloud-dtn-plugin-unit-tests-runner -v -f
+docker rm owncloud-dtn-plugin-unit-tests-runner-db -v -f
+docker rm owncloud-dtn-plugin-unit-tests-runner-redis -v -f
 IF /I "%ERRORLEVEL%" NEQ "0" ( 
     SET /A errno=%ERRORLEVEL%
 )
