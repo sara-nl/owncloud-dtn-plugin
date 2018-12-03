@@ -96,7 +96,7 @@ class DtnControllerTest extends \Test\TestCase {
         $_dtnController = $this->getDtnController($this->getRequest($_vars));
         $_result02 = $_dtnController->transferFiles();
         /* No DTN agent set generates message */
-        $this->assertArrayHasKey('messag', $_result02);
+        $this->assertArrayHasKey('message', $_result02);
         $this->assertArrayNotHasKey('error', $_result02);
     }
 
