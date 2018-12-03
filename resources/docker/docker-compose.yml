@@ -14,7 +14,7 @@ services:
   owncloud:
     image: owncloud/server:${OWNCLOUD_VERSION}
     restart: always
-    container_name: owncloud-dtn-plugin
+    container_name: owncloud-dtn-plugin-test-runner
     ports:
       - ${HTTPS_PORT}:443
       - ${HTTP_PORT}:80
