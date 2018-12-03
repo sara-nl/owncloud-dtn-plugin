@@ -42,9 +42,11 @@ class Application extends App {
         });
 
         /**
-         * @todo Remove this setting This setting inactivates the code integrity check !! 
-         * It must be removed when the app goes into production */
-        $server->getConfig()->setSystemValue('integrity.check.disabled', true);
+         * This setting inactivates the code integrity check !! 
+         * It must be removed when the app goes into production 
+         * @todo Remove this setting
+         */
+//        $server->getConfig()->setSystemValue('integrity.check.disabled', true);
         /* Reset the system setting to false again */
 //        $server->getConfig()->setSystemValue('integrity.check.disabled', false);
     }
