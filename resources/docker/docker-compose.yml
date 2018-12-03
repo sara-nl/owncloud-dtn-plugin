@@ -14,6 +14,7 @@ services:
   owncloud:
     image: owncloud/server:${OWNCLOUD_VERSION}
     restart: always
+    container_name: owncloud-dtn-plugin
     ports:
       - ${HTTPS_PORT}:443
       - ${HTTP_PORT}:80
@@ -39,8 +40,10 @@ services:
       retries: 5
     volumes:
       - files:/mnt/data
+
       # dev plugin code
       - c:/xampp/htdocs/ownCloud-DTN-plugin/apps/dtn:/var/www/owncloud/apps/dtn
+      
       # tests requirements
       - c:/xampp/htdocs/ownCloud-DTN-plugin/tests:/var/www/owncloud/tests
       
