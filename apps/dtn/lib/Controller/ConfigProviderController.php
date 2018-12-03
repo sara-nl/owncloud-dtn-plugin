@@ -44,31 +44,20 @@ class ConfigProviderController extends ApiController {
     }
 
     /**
-     * @NoCSRFRequired
-     * @CORS
-     */
-    public function index() {
-        $_url = $this->request->getPathInfo();
-        return [
-            "message" => "Hi there. nothing to see here: $_url"
-        ];
-    }
-
-    /**
-     * Returns file base location information of the user with the specified DTN user id.
+     * Returns file base location information (relative to the server-configured data directory) 
+     * of the user with the specified DTN user id.
      * 
      * @return []
      * @NoCSRFRequired
      * @CORS
      */
-    public function getDataLocationInfo($receiverDTNUID) {
+    public function getDataLocationInfo($receiverDTNUID = NULL) {
         $this->logger->log('info', $receiverDTNUID);
-        if ($receiverDTNUID === NULL) {
+        if ($receiverDTNUID === NULL || trim($receiverDTNUID) === '') {
             return [
-                "message" => "Receiver id must be provided"
+                "message" => "Receiver id must be provided (id='$receiverDTNUID')"
             ];
         } else {
-            $dataPath = $this->config->getSystemValue('datadirectory');
             $_receiver = Util::findUserForDTNUserId($receiverDTNUID);
             if (isset($_receiver)) {
                 $_receiverUID = $_receiver->getUID();
