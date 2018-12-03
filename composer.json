@@ -1,7 +1,7 @@
 {
     "name": "owncloud/apps/dtn",
     "description": "A plugin for connecting to the DTN",
-    "license": "",
+    "license": "Apache-2.0",
     "config": {
         "vendor-dir": "lib/composer",
         "optimize-autoloader": true,
