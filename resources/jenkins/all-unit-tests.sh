@@ -1,6 +1,8 @@
 #!/bin/sh
 ## UNIX test runner script
 
+sudo su -s /bin/bash jenkins
+
 errno=0
 cd resources/docker
 
