@@ -1,6 +1,8 @@
 #!/bin/sh
 ## UNIX test runner script
 
+sudo chown tomcat:tomcat * -R
+
 errno=0
 cd resources/docker
 
