@@ -45,11 +45,13 @@ services:
       # dev plugin code
       #------------------
       # Jenkins workspace
-      - C:/Program Files (x86)/Jenkins/workspace/test-01/apps/dtn:/var/www/owncloud/apps/dtn
+#      - C:/Program Files (x86)/Jenkins/workspace/test-01/apps/dtn:/var/www/owncloud/apps/dtn
+      - /opt/bitnami/apps/jenkins/jenkins_home/workspace/ownCloud-DTN-plugin/apps/dtn:/var/www/owncloud/apps/dtn
       
       # tests requirements
       # Jenkins workspace
-      - C:/Program Files (x86)/Jenkins/workspace/test-01/tests:/var/www/owncloud/tests
+#      - C:/Program Files (x86)/Jenkins/workspace/test-01/tests:/var/www/owncloud/tests
+      - /opt/bitnami/apps/jenkins/jenkins_home/workspace/ownCloud-DTN-plugin/tests:/var/www/owncloud/tests
       
   db:
     image: webhippie/mariadb:latest
