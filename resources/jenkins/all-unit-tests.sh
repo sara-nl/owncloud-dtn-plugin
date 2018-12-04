@@ -5,7 +5,7 @@ errno=0
 cd resources/docker
 
 sudo docker-compose up -d
-sudo docker exec owncloud-dtn-plugin-unit-tests-runner /bin/bash -c "cd /var/www/owncloud/apps/dtn/tests/unit && php phpunit --colors --debug --bootstrap bootstrap.php --filter \"OCA\\DTN\\Tests\" ./"
+sudo docker exec owncloud-dtn-plugin-unit-tests-runner /bin/bash -c "cd /var/www/owncloud/apps/dtn/tests/unit && php phpunit --colors --debug --bootstrap bootstrap.php ./"
 ## save the test exit result in case the tests fail
 
 sudo docker-compose stop
