@@ -1,8 +1,6 @@
 #!/bin/sh
 ## UNIX test runner script
 
-sudo chown tomcat:tomcat * -R
-
 errno=0
 cd resources/docker
 
@@ -16,3 +14,5 @@ sudo docker-compose stop
 sudo docker rm owncloud-dtn-plugin-unit-tests-runner -v -f
 sudo docker rm owncloud-dtn-plugin-unit-tests-runner-db -v -f
 sudo docker rm owncloud-dtn-plugin-unit-tests-runner-redis -v -f
+
+sudo chown tomcat:tomcat * -R
