@@ -15,4 +15,5 @@ sudo docker rm owncloud-dtn-plugin-unit-tests-runner -v -f
 sudo docker rm owncloud-dtn-plugin-unit-tests-runner-db -v -f
 sudo docker rm owncloud-dtn-plugin-unit-tests-runner-redis -v -f
 
+cd ../../
 sudo chown tomcat:tomcat * -R
