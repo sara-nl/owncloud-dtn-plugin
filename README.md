@@ -147,7 +147,7 @@ Run all tests in the namespace starting with OCA\DTN\Tests (starting from the cu
 For using this setup in the CI process see [Continuous Integration](#CI).
 
 ##### Frontend (javascript) testing
-We could not get the existing ownCloud frontend tests running in a reasonable amount of time. In general the whole frontend testing environment configuration contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
+We could not get the existing ownCloud frontend tests running in a reasonable amount of time. In any case the whole frontend testing environment configuration contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
 We suggest to setup a contemporary separate frontend testing configuration for the application alone.
 
 #### <span id="ci">Continuous integration</span>
