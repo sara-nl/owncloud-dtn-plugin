@@ -153,6 +153,6 @@ We suggest to setup a contemporary separate frontend testing configuration for t
 #### <span id="ci">Continuous integration</span>
 For running the tests in a continuous integration process we use a similar setup. Then a script is needed that starts up the ownCloud (container) instance through Docker Composer, runs the tests inside this container, stops the container and cleans up containers and their associated volumes.
 
-This method has been tested on unix & windows using [Jenkins](https://jenkins.io/) using the tests runner scripts in resources/jenkins (all-unit-tests.sh(.bat)). 
+The CI tests runners windows and unix scripts inside the resources/jenkins dir use such a mechanisme. They have been tested using a [Jenkins CI](https://jenkins.io/) setup.
 
 Note: Running the CI server itself inside a container would complicate things somewhat, you would need Docker inside Docker to run the tests. Such a setup has not been tested.
