@@ -6,8 +6,8 @@ This application adds large file transfer capabilities to your ownCloud instance
 
 ### [Getting started](#getting-started)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Services](#services)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConfigProvider service](#configprovider) | [Notification service](#notification)  
-### <span style="margin-left: 5em;">[Development Guideline](#dev-guide)</span>
-##### <span style="margin-left: 15em;">[Setting up the development invironment](#dev-guide-setup)</span>
+### [Development Guideline](#dev-guide)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setting up the development environment](#dev-guide-setup) | [Unit testing](#unit-testing) | [Continuous Integration](#ci)
 <br>
 
 ---
@@ -132,7 +132,7 @@ Go inside the ownCloud container:
 
 Now you can start developing. Any code change will have an immediate effect on the running ownCloud instance.
 
-#### <span id="unit-testing">Unit testing the application (PHPUnit testing)</span>
+#### <span id="unit-testing">Unit testing</span>
 Unit testing needs a running ownCloud environment (see [ownCloud doc](https://doc.owncloud.org/server/10.0/developer_manual/core/unit-testing.html)) which means in our case that it’s easiest to run the tests in the same ownCloud docker container that is used for development. 
 
 The tests require the ownCloud specific test classes to be available. We already tackled this by making the ownCloud tests src [available](#include-unit-tests-src) within the docker container. This has the advantage that we can use the ownCloud unit tests bootstrap mechanism for our tests.
@@ -150,7 +150,7 @@ For using this setup in the CI process see [Continuous Integration](#CI).
 We could not get the existing ownCloud frontend tests running in a reasonable amount of time. In general the whole frontend testing environment configuration contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
 We suggest to setup a contemporary separate frontend testing configuration for the application alone.
 
-#### <span id="CI">Continuous integration</span>
+#### <span id="ci">Continuous integration</span>
 For running the tests in a continuous integration process we use a similar setup. Then a script is needed that starts up the ownCloud (container) instance through Docker Composer, runs the tests inside this container, stops the container and cleans up containers and their associated volumes.
 
 This method has been tested on unix & windows using [Jenkins](https://jenkins.io/) using the tests runner scripts in resources/jenkins (all-unit-tests.sh(.bat)). 
