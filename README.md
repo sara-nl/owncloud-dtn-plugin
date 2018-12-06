@@ -155,4 +155,4 @@ For running the tests in a continuous integration process we use a similar setup
 
 The CI tests runners windows and unix scripts inside the resources/jenkins dir use such a mechanisme. They have been tested in a [Jenkins CI](https://jenkins.io/) setup.
 
-Note: Running the CI server itself inside a container would complicate things somewhat, you would need Docker inside Docker to run the tests. Such a setup has not been tested.
+_Note: Running the CI server itself inside a container would complicate things somewhat, you would need Docker inside Docker to run the tests. Such a setup has not been tested._
