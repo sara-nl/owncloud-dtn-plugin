@@ -8,7 +8,7 @@ Data Transfer Nodes (DTNs) are a hardware and software system that allows for fa
 
 An(each) ownCloud instance is connected to the DTN through a DTN agent. This agent is called by the ownCloud app with a request to transfer (a set of chosen, currently max 1 file) files to a receiver which is also linked to the DTN. The receiver may be hooked up with another type of file system, but through a DTN agent. 
 
-![Accelerated Cross Domain Transfer](acdt.PNG "Accelerated Cross Domain Transfer")
+![Accelerated Cross Domain Transfer](https://raw.githubusercontent.com/sara-nl/owncloud-dtn-plugin/master/acdt.PNG "Accelerated Cross Domain Transfer")
 
 1. The user commands a file transfer through the app's file transfer display.  
 2. The DTN agent on the sending end requests the path of the file to be transfered using the [location service](#configprovider) that is available in the app. The agent uses this path to copy the file so it can transfer it, using its transfer mechanism, to the receiving DTN agent. 
