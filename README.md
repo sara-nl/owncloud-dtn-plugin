@@ -30,6 +30,9 @@ _Important note: The status of this application is proof of concept. It is by no
 ---
 ## <span id="getting-started">Getting Started</span>
 
+### Prerequisites
+The application is an ownCloud App running in an ownCloud instance and communicates with a DTN agent. ownCloud can be obtained [here](https://www.owncloud.org), the DTN agent and installation instructions for it can found [here](https://bitbucket.org/uva-sne/dtn_agent).
+
 ### <span id="installing">Installing</span>
 Create a new 'dtn' directory in the ownCloud instance 'apps' dir and add the 'apps/dtn' files to it.
 
