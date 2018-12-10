@@ -1,11 +1,22 @@
 # DTN ownCloud plugin application
 
-This application adds large file transfer capabilities to your ownCloud instance.
-<br>
-<br>
+This application adds large file transfer capabilities to your ownCloud instance by making use of a Data Transfer Network. 
 
+An(each) ownCloud instance is connected to the DTN through a DTN agent. This agent is called by the ownCloud app with a request to transfer (a set of chosen, currently max 1 file) files to a receiver which is also linked to the DTN. The receiver may be hooked up with another type of file system, but through a DTN agent. 
+
+1. The user commands a file transfer through the app's file transfer display.  
+2. The DTN agent on the sending end requests the path of the file to be transfered using the [location service](#configprovider) that is available in the app. The agent uses this path to copy the file so it can transfer it, using its transfer mechanism, to the receiving DTN agent. 
+3. The receiving DTN agent makes a requests to the receiving application for the files' base location of the specified receiver, ie. where the file needs to be placed.
+4. The DTN transfer mechanism performs the actual file transfer end to end.
+5. If the receiving end is also an ownCloud instance the DTN agent at the receiving end may choose to notify the receiver about the transfer using the app's [notification service](#notification).
+ 
+Important note: The status of this application is proof of concept. It is by no means production ready.
+
+<br>
+---
 ### [Getting started](#getting-started)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Services](#services)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConfigProvider service](#configprovider) | [Notification service](#notification)  
+---
 ### [Development Guideline](#dev-guide)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setting up the development environment](#dev-guide-setup) | [Unit testing](#unit-testing) | [Continuous Integration](#ci)
 <br>
@@ -37,7 +48,8 @@ Fill in the receiver's DTN user id which should be know (it's the id the receive
 
 ## <span id="services">Services</span>
 
-The app has 2 REST services running, ConfigProvider and Notification
+The app has 2 REST services running, ConfigProvider and Notification. 
+It is with these 2 services that the 
 
 ### <span id="configprovider">ConfigProvider</span>
 This service provides user data path information, ie. the path where files of a user are stored relative to the ownCloud data directory (as set in ownCloud config.php).
@@ -110,7 +122,7 @@ We set up a development runtime environment using the docker compose setup that 
 Next to the regular data volume we add two source volumes from local to the container: 
 
 1. A mapping to our application source code.
-2. A mapping to ownCloud’s tests source. The ownCloud Docker container does not contain the unit test files that we need as a unit test requirement. However we already [included them](#include-unit-tests-src) into our project so we simply create a source volume for that as well.
+2. A mapping to ownCloud’s tests source. The ownCloud Docker container does not contain the unit test files that we need as a unit test requirement. However we already [included them](#include-unit-tests-src) into our project so we simply use a source volume for that as well.
 
 From the docker-compose.yml file: 
 >&nbsp;&nbsp;&nbsp;&nbsp;volumes:  
@@ -142,13 +154,13 @@ For that our tests bootstrap file refers to the ownCloud tests bootstrap file.
 >$ /var/www/owncloud/apps/dtn/tests php phpunit --colors --bootstrap bootstrap.php Controller/DtnControllerTest.php
 
 Run all tests in the namespace starting with OCA\DTN\Tests (starting from the current directory going downwards):
->php phpunit --colors --bootstrap bootstrap.php --filter 'OCA\\DTN\\Tests' ./
+>php phpunit --colors --bootstrap bootstrap.php --filter 'OCA\\\\DTN\\\\Tests' ./
 
 For using this setup in the CI process see [Continuous Integration](#CI).
 
 ##### Frontend (javascript) testing
-We could not get the existing ownCloud frontend tests running in a reasonable amount of time. In any case the whole frontend testing environment configuration contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
-We suggest to setup a contemporary separate frontend testing configuration for the application alone.
+The ownCloud frontend testing environment configuration itself contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
+We suggest to setup a contemporary separate frontend testing configuration for the application alone. Currently this has not been configured for this app.
 
 #### <span id="ci">Continuous integration</span>
 For running the tests in a continuous integration process we use a similar setup. Then a script is needed that starts up the ownCloud (container) instance through Docker Composer, runs the tests inside this container, stops the container and cleans up containers and their associated volumes.
