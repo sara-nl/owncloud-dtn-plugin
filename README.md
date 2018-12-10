@@ -9,8 +9,8 @@ An(each) ownCloud instance is connected to the DTN through a DTN agent. This age
 3. The receiving DTN agent makes a requests to the receiving application for the files' base location of the specified receiver, ie. where the file needs to be placed.
 4. The DTN transfer mechanism performs the actual file transfer end to end.
 5. If the receiving end is also an ownCloud instance the DTN agent at the receiving end may choose to notify the receiver about the transfer using the app's [notification service](#notification).
- 
-Important note: The status of this application is proof of concept. It is by no means production ready.
+
+_Important note: The status of this application is proof of concept. It is by no means production ready._
 
 ---
 
