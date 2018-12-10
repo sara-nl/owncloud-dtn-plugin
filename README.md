@@ -2,7 +2,13 @@
 
 This application adds large file transfer capabilities to your ownCloud instance by making use of a Data Transfer Network. 
 
+Data Transfer Nodes (DTNs) are a hardware and software system that allows for fast and efficient transport of data over long distances. This application was developed in an effort to build a user-friendly frontend for file transfer using DTNs.  
+
+##### How it works
+
 An(each) ownCloud instance is connected to the DTN through a DTN agent. This agent is called by the ownCloud app with a request to transfer (a set of chosen, currently max 1 file) files to a receiver which is also linked to the DTN. The receiver may be hooked up with another type of file system, but through a DTN agent. 
+
+![Accelerated Cross Domain Transfer](acdt.PNG "Accelerated Cross Domain Transfer")
 
 1. The user commands a file transfer through the app's file transfer display.  
 2. The DTN agent on the sending end requests the path of the file to be transfered using the [location service](#configprovider) that is available in the app. The agent uses this path to copy the file so it can transfer it, using its transfer mechanism, to the receiving DTN agent. 
@@ -92,7 +98,7 @@ The DTN plugin is developed as an ownCloud application according to ownCloud’s
  
 The application’s source code is separated from ownCloud’s source code. It resides as a separate directory inside the ownCloud app directory and is immediately recognized as an App by ownCloud when the server runs.
 
-Our development setup makes use of this code separation because it adds the necessary ownCloud classes as dependencies through the [Composer dependency manager](https://getcomposer.org/) and that way it can be developed as an individual project. 
+Our development setup makes use of this code separation for it adds the necessary ownCloud classes as dependencies through the [Composer dependency manager](https://getcomposer.org/) and that way it can be developed as an individual project. 
 
 #### <span id="dev-env-setup">Development environment setup</span>
 _Prerequisites: Composer dependency manager must be [installed](https://getcomposer.org/) on your machine_
