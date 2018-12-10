@@ -12,7 +12,6 @@ An(each) ownCloud instance is connected to the DTN through a DTN agent. This age
  
 Important note: The status of this application is proof of concept. It is by no means production ready.
 
-<br>
 ---
 
 ### [Getting started](#getting-started)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Services](#services)
@@ -21,7 +20,6 @@ Important note: The status of this application is proof of concept. It is by no 
 
 ### [Development Guideline](#dev-guide)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setting up the development environment](#dev-guide-setup) | [Unit testing](#unit-testing) | [Continuous Integration](#ci)
-<br>
 
 ---
 ## <span id="getting-started">Getting Started</span>
