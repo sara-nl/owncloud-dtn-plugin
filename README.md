@@ -20,18 +20,21 @@ _Important note: The status of this application is proof of concept. It is by no
 
 ---
 
-### [Getting started](#getting-started)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Services](#services)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConfigProvider service](#configprovider) | [Notification service](#notification)  
+### [Getting started](#getting-started)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Prerequisits](#prerequisits) | [Installing](#installing) | [App settings](#app-settings) | [Usage](#usage)
 ---
-
+### [Services](#services)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConfigProvider service](#configprovider) | [Notification service](#notification)  
+---
 ### [Development Guideline](#dev-guide)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Setting up the development environment](#dev-guide-setup) | [Unit testing](#unit-testing) | [Continuous Integration](#ci)
 
 ---
 ## <span id="getting-started">Getting Started</span>
 
-### Prerequisites
-The application is an ownCloud App running in an ownCloud instance and communicates with a DTN agent. ownCloud can be obtained [here](https://www.owncloud.org), the DTN agent and installation instructions for it can found [here](https://bitbucket.org/uva-sne/dtn_agent).
+### <span id="prerequisits">Prerequisites</span>
+The application is an ownCloud App running in an ownCloud instance and communicates with a DTN agent. OwnCloud can be obtained [here](https://www.owncloud.org), the DTN agent and installation instructions for it can found [here](https://bitbucket.org/uva-sne/dtn_agent).
+The ownCloud server version 10.0.9 was used for the development of this app.
 
 ### <span id="installing">Installing</span>
 Create a new 'dtn' directory in the ownCloud instance 'apps' dir and add the 'apps/dtn' files to it.
