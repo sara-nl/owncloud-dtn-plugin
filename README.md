@@ -24,6 +24,7 @@ An(each) ownCloud instance is connected to the DTN through a DTN agent. This age
 _Important note: The status of this application is proof of concept. It is by no means production ready._
 
 **Copyright:** 2018 SURFsara
+
 **License:** Apache 2.0 license
 
 **Main author:**
