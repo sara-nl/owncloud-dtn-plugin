@@ -1,13 +1,12 @@
-
 # <span id="introduction">DTN ownCloud plugin application</span>
 
 This application adds large file transfer capabilities to your ownCloud instance by making use of a Data Transfer Network. 
 
 Data Transfer Nodes (DTNs) are a hardware and software system that allows for fast and efficient transport of data over long distances. This application was developed in an effort to build a user-friendly frontend for file transfer using DTNs.  
 
-##### How it works
+#### How it works
 
-An(each) ownCloud instance is connected to the DTN through a DTN agent. This agent is called by the ownCloud app with a request to transfer (a set of chosen, currently max 1 file) files to a receiver which is also linked to the DTN. The receiver may be hooked up with another type of file system, but through a DTN agent. 
+An (each) ownCloud instance is connected to the DTN through a DTN agent. This agent is called by the ownCloud app with a request to transfer (a set of chosen, currently max 1 file) files to a receiver which is also linked to the DTN. The receiver may be hooked up with another type of file system, but through a DTN agent. 
 
 ![Accelerated Cross Domain Transfer](https://raw.githubusercontent.com/sara-nl/owncloud-dtn-plugin/master/acdt.PNG "Accelerated Cross Domain Transfer")
 
@@ -64,13 +63,16 @@ _Important note: The status of this application is proof of concept. It is by no
   * [Continuous Integration](#ci)
 
 ---
+
 ## <span id="getting-started">Getting Started</span>
 
 ### <span id="prerequisits">Prerequisites</span>
-The application is an ownCloud App running in an ownCloud instance and communicates with a DTN agent. OwnCloud can be obtained [here](https://www.owncloud.org), the DTN agent and installation instructions for it can found [here](https://bitbucket.org/uva-sne/dtn_agent).
+
+The application is an ownCloud App running in an ownCloud instance and communicates with a DTN agent. OwnCloud can be obtained at https://www.owncloud.org, the DTN agent and installation instructions for it can found at https://bitbucket.org/uva-sne/dtn_agent.
 The ownCloud server version 10.0.9 was used for the development of this app.
 
 ### <span id="installing">Installing</span>
+
 Create a new 'dtn' directory in the ownCloud instance 'apps' dir and add the 'apps/dtn' files to it.
 
 Add the following setting to the server config/config.php file:
@@ -79,16 +81,18 @@ Add the following setting to the server config/config.php file:
 
 This makes sure that transferred files will be discovered by ownCloud.
 
-#### <span id="app-settings">App settings</span>
-When ownCloud is up and running the administrator should activate the app from within ownCloud via Settings -> Admin -> Apps
+### <span id="app-settings">App settings</span>
+
+When ownCloud is up and running the administrator should activate the app from within ownCloud via Settings → Admin → Apps
 
 When the app is activated each user should go to Settings → Personal → Additional and set the following user specific app value:
 * Your DTN user id. This is the id that the agent uses to identify you for this ownCloud instance.
 
-The administrator should set the the DTN agent server address. Go to Settings -> Admin -> Additional and set the following app specific value:
+The administrator should set the the DTN agent server address. Go to Settings → Admin → Additional and set the following app specific value:
 * The DTN agent ip and optional port (eg. 198.51.100.89:3000). This is used by the app to contact the DTN agent to do the file transfers.
 
 ### <span id="usage">Usage</span>
+
 Select a file in the main file view. In the file option bar above the file list the 'DTN transfer' is shown. If you click it the DTN file transfer dialog will appear.
 
 Fill in the receiver's DTN user id which should be know (it's the id the receiver has filled in as his/her DTN user id in the app settings, see 'App settings' above).
@@ -98,6 +102,7 @@ Fill in the receiver's DTN user id which should be know (it's the id the receive
 The app has 2 REST services running, ConfigProvider and Notification. 
 
 ### <span id="configprovider">ConfigProvider</span>
+
 This service provides user data path information, ie. the path where files of a user are stored relative to the ownCloud data directory (as set in ownCloud config.php).
 
 (GET) user data path information through endpoint: https://{my-owncloud-server.example}/apps/dtn/config/datalocationinfo/{receiverDTNUID} where {receiverDTNUID} is the DTN user id that the receiver has set.
@@ -116,8 +121,8 @@ The response is in JSON, eg:
         "userDataPath": "\/theusername\/files",  
     }
 
-
 ### <span id="notification">Notification</span>
+
 This service accepts notification posts.
 
 (POST) a notification through endpoint https://{my-owncloud-server.example}/apps/dtn/notifier/notification
@@ -138,7 +143,9 @@ Call example:
      -H "Accept: application/json" -H "Content-type: application/json" -X POST \
      -d {\"receiverDTNUID\":\"user01@dtn.example.com\",\"senderDTNUID\":\"sender01@dtn.example.com\",\"message\":\"A notification message\"} \
       https://127.0.0.1/owncloud/index.php/apps/dtn/notifier/notification
+
 ---
+
 ## <span id="dev-guide">Development Guideline</span>
 
 ### <span id="dev-guide-setup">Setting up the development environment</span>
@@ -149,7 +156,8 @@ The application’s source code is separated from ownCloud’s source code. It r
 
 Our development setup makes use of this code separation for it adds the necessary ownCloud classes as dependencies through the [Composer dependency manager](https://getcomposer.org/) and that way it can be developed as an individual project. 
 
-#### <span id="dev-env-setup">Development environment setup</span>
+### <span id="dev-env-setup">Development environment setup</span>
+
 _Prerequisites: Composer dependency manager must be [installed](https://getcomposer.org/) on your machine_
 
 `Git clone https://github.com/sara-nl/owncloud-dtn-plugin.git` the source code into the IDE of your choice as a separate project. Run Composer, referring to the composer.json file in the root dir of the project, to build all class dependencies.
@@ -172,7 +180,8 @@ DTN-ownCloud-plugin project root/
 
 Next, setup the development runtime environment.
 
-#### Runtime environment setup: docker-compose
+### Runtime environment setup: docker-compose
+
 _Prerequisites: Docker Compose must be installed on your machine_
 
 We set up a development runtime environment using the [docker compose setup](https://github.com/owncloud-docker/base#launch-with-docker-compose) that is made available by ownCloud. This setup consists of 2 files: an .env file with the variables specified and the docker-compose.yml file. These files can also be found in the repository (resources/ dir).
@@ -207,7 +216,8 @@ Go inside the ownCloud container:
 
 Now you can start developing. Any code change will have an immediate effect on the running ownCloud instance.
 
-#### <span id="unit-testing">Unit testing</span>
+### <span id="unit-testing">Unit testing</span>
+
 Unit testing needs a running ownCloud environment (see [ownCloud doc](https://doc.owncloud.org/server/10.0/developer_manual/core/unit-testing.html)) which means in our case that it’s easiest to run the tests in the same ownCloud docker container that is used for development. 
 
 The tests require the ownCloud specific test classes to be available. We already tackled this by making the ownCloud tests src [available](#include-unit-tests-src) within the docker container. This has the advantage that we can use the ownCloud unit tests bootstrap mechanism for our tests.
@@ -223,11 +233,13 @@ Run all tests in the namespace starting with OCA\DTN\Tests (starting from the cu
 
 For using this setup in the CI process see [Continuous Integration](#CI).
 
-##### Frontend (javascript) testing
+#### Frontend (javascript) testing
+
 The ownCloud frontend testing environment configuration itself contains quite a lot of packages and tools that are either old, deprecated, not maintained or near to being abandoned.
 We suggest to setup a contemporary separate frontend testing configuration for the application alone. Currently this has not been configured for this app.
 
-#### <span id="ci">Continuous integration</span>
+### <span id="ci">Continuous integration</span>
+
 For running the tests in a continuous integration process we use a similar setup. Then a script is needed that starts up the ownCloud (container) instance through Docker Composer, runs the tests inside this container, stops the container and cleans up containers and their associated volumes.
 
 The CI tests runners windows and unix scripts inside the resources/jenkins dir use such a mechanisme. They have been tested in a [Jenkins CI](https://jenkins.io/) setup.
